@@ -1,0 +1,19 @@
+{
+  "name": "newman-server",
+  "version": "1.0.0",
+  "description": "Listens for GitHub deployment status updates and runs newman tests",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "github": "^3.1.1",
+    "github-webhook-handler": "^0.6.0",
+    "newman": "^3.1.1"
+  },
+  "engines": {
+    "node": "5.11.1"
+  }
+}

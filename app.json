@@ -1,0 +1,51 @@
+{
+  "name": "Newman Webhook",
+  "description": "Runs a Postman collection of tests using newman when GitHub notifies it of a successful deployment.",
+  "keywords": [
+    "heroku",
+    "newman",
+    "postman",
+    "test",
+    "deployment"
+  ],
+  "repository": "https://github.com/defining-technology/newman-webhook",
+  "scripts": {
+    "postdeploy": "node create-webhook.js"
+  },
+  "env": {
+    "GITHUB_SECRET": {
+      "description": "A secret key for verifying that requests came from GitHub.",
+      "generator": "secret"
+    },
+    "GITHUB_STATUS_CONTEXT": {
+      "description": "Context to be used when creating status updates.",
+      "value": "newman-webhook"
+    },
+    "GITHUB_TOKEN": {
+      "description": "A token created for use by the webhook when creating status updates."
+    },
+    "TESTS_COLLECTION_URL": {
+      "description": "URL of a file containing a postman collection to be executed by newman following a successful deployment."
+    },
+    "WEBHOOK_APP_NAME": {
+      "description": "Heroku doesn't provide a way to determine the URL or the name of the application. As such, the name must be specified here so that the webhook can be created."
+    },
+    "REPO_OWNER": {
+      "description": "Username of the owner of the repository to watch for deployments."
+    },
+    "REPO_NAME": {
+      "description": "Name of the repository to watch for deployments."
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
